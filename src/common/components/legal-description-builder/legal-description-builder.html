@@ -1,0 +1,179 @@
+<div class="well well-sm table-well">
+
+  <table class="table table-striped table-condensed table-hover">
+
+    <colgroup>
+      <col style="width: 70px">
+      <col style="width: 70px">
+      <col style="width: 40px">
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col style="width:10%">
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th colspan="3"></th>
+        <th colspan="4" class="center">NE Qtr.</th>
+        <th colspan="4" class="center">NW Qtr.</th>
+        <th colspan="4" class="center">SW Qtr.</th>
+        <th colspan="4" class="center">SE Qtr.</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Township</th>
+        <th>Range</th>
+        <th>Section</th>
+        <th class="center">NE</th>
+        <th class="center">NW</th>
+        <th class="center">SW</th>
+        <th class="center">SE</th>
+        <th class="center">NE</th>
+        <th class="center">NW</th>
+        <th class="center">SW</th>
+        <th class="center">SE</th>
+        <th class="center">NE</th>
+        <th class="center">NW</th>
+        <th class="center">SW</th>
+        <th class="center">SE</th>
+        <th class="center">NE</th>
+        <th class="center">NW</th>
+        <th class="center">SW</th>
+        <th class="center">SE</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          <input
+            type="text"
+            id="description-township"
+            ng-model="builder.description.township"
+            class="form-control input-sm"
+            autocomplete="off">
+        </td>
+        <td>
+          <input
+            type="text"
+            id="description-range"
+            ng-model="builder.description.range"
+            class="form-control input-sm"
+            autocomplete="off">
+        </td>
+        <td>
+          <input
+            type="text"
+            id="description-section"
+            ng-model="builder.description.section"
+            class="form-control input-sm"
+            autocomplete="off">
+        </td>
+        <td colspan="4">
+          <quarter-picker quarter="builder.description.quarters.ne"></quarter-picker>
+        </td>
+        <td colspan="4">
+          <quarter-picker quarter="builder.description.quarters.nw"></quarter-picker>
+        </td>
+        <td colspan="4">
+          <quarter-picker quarter="builder.description.quarters.sw"></quarter-picker>
+        </td>
+        <td colspan="4">
+          <quarter-picker quarter="builder.description.quarters.se"></quarter-picker>
+        </td>
+        <td>
+          <!--Add description-->
+          <div class="btn-group btn-group-justified" ng-hide="builder.description.$$hashKey">
+            <div class="btn-group btn-group-sm" role="group">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                ng-click="builder.save(builder.description)">
+                  Add
+              </button>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+              <button
+                type="button"
+                class="btn btn-default btn-sm"
+                ng-click="builder.reset()">
+                  Clear
+              </button>
+            </div>
+          </div>
+          <!--Update description-->
+          <div class="btn-group btn-group-justified" ng-show="builder.description.$$hashKey">
+            <div class="btn-group btn-group-sm" role="group">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                ng-click="builder.save(builder.description)">
+                  Update
+              </button>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+              <button
+                type="button"
+                class="btn btn-default btn-sm"
+                ng-click="builder.reset()">
+                  Cancel
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+
+    <tbody>
+      <tr
+        ng-repeat="description in builder.document.legalDescriptions"
+        ng-click="builder.edit(description)"
+        class="link-row"
+        ng-class="{info:description.$$hashKey==builder.description.$$hashKey}">
+        <td><span class="text-muted">T</span>{{::description.township}}</td>
+        <td><span class="text-muted">R</span>{{::description.range}}</td>
+        <td>{{::description.section}}</td>
+        <td class="center"><checkmark checked="::description.quarters.ne.ne"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.ne.nw"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.ne.sw"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.ne.se"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.nw.ne"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.nw.nw"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.nw.sw"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.nw.se"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.sw.ne"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.sw.nw"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.sw.sw"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.sw.se"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.se.ne"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.se.nw"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.se.sw"></checkmark></td>
+        <td class="center"><checkmark checked="::description.quarters.se.se"></checkmark></td>
+        <td>
+          <button
+            class="btn btn-sm btn-danger"
+            ng-click="builder.delete(description)">
+              <i icon="trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>

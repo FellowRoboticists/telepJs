@@ -1,0 +1,13 @@
+.project-picker {
+  a.dropdown-toggle > span {
+    color:#fff;
+    }
+  }
+.project-picker {
+  &.project-selected {
+    background-color:#337ab7;
+    }
+  &.no-project-selected {
+    background-color:red;
+    }
+  }

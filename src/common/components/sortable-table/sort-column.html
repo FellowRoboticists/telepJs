@@ -1,0 +1,15 @@
+<a href
+  class="sort-link">
+
+  <span ng-transclude></span>
+
+  <span class="sort-toggle">
+    <span
+      ng-class="{
+        'glyphicon glyphicon-chevron-up':!collection.reverse && collection.sortKey===sortBy,
+        'glyphicon glyphicon-chevron-down':collection.reverse && collection.sortKey===sortBy,
+        'glyphicon glyphicon-option-horizontal':collection.sortKey!==sortBy
+      }"></span>
+  </span>
+
+</a>

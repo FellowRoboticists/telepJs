@@ -1,0 +1,95 @@
+<main-nav>
+  <ul
+    class="nav navbar-nav"
+    ng-show="app.session.sessionId">
+      <li
+        ng-if="app.session.user.permissions.manageUsers"
+        ng-class="{active: app.$state.includes('app.accounts')}">
+        <a href="#/accounts">
+          <i icon="globe"></i> Accounts
+        </a>
+      </li>
+      <li
+        ng-if="!app.session.user.permissions.manageUsers && app.session.user.accountOwner"
+        ng-class="{active: app.$state.includes('app.accounts')}">
+        <a href="#/accounts/{{app.session.account.id}}/activity">
+          <i icon="globe"></i> Account
+        </a>
+      </li>
+      <li
+        ng-if="app.session.user.permissions.manageUsers"
+        ng-class="{active: app.$state.includes('app.users')}">
+        <a href="#/users">
+          <i icon="user"></i> Users
+        </a>
+      </li>
+      <li ng-class="{active: app.$state.includes('app.books')}">
+        <a href="#/books">
+          <i icon="book"></i> Books
+        </a>
+      </li>
+      <li
+        ng-if="!app.session.user.permissions.manageUsers"
+        ng-class="{active: app.$state.includes('app.download')}">
+        <a ng-href="#/downloads">
+          <i icon="download"></i> Downloads
+          <span
+            class="badge"
+            ng-if="app.downloadCounter.count">{{app.downloadCounter.count}}</span>
+        </a>
+      </li>
+      <li
+        ng-if="app.session.user.accountOwner && app.session.account.projectsEnabled"
+        ng-class="{active: app.$state.includes('app.projects')}">
+        <a href="#/projects">
+          <i icon="folder-open"></i> Projects
+        </a>
+      </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li uib-dropdown>
+      <a href uib-dropdown-toggle><i icon="user"></a>
+      <ul class="dropdown-menu">
+        <li><a href="#/profile">Profile</a></li>
+        <li><a href ng-click="app.logout()">Sign-out</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul
+    ng-if="app.projectPicker.projects.length"
+    class="nav navbar-nav navbar-right project-picker"
+    ng-class="{'project-selected':app.selectedProject.id, 'no-project-selected':!app.selectedProject.id}">
+    <li uib-dropdown>
+      <a href uib-dropdown-toggle>
+        <span ng-if="app.selectedProject.id">Current Project: <b>{{app.selectedProject.name}}</b></span>
+        <span ng-if="!app.selectedProject.id"><i icon="alert"></i> Select Project...</span>
+        <span class="caret"></span>
+      </a>
+      <ul class="uib-dropdown-menu">
+        <li ng-repeat="project in app.projectPicker.projects track by project.id">
+          <a href ng-click="app.select(project)">{{project.name}}</a>
+        </li>
+        <li role="separator" class="divider" ng-if="app.selectedProject.id"></li>
+        <li ng-if="app.selectedProject.id">
+          <a href ng-click="app.clear()"><i icon="ban-circle"></i> No Project</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</main-nav>
+
+<div class="container-fluid">
+
+  <ui-view></ui-view>
+
+  <hr>
+
+  <p
+    ng-if="!app.loader.active"
+    class="center fade-in">
+    <a href="mailto:vault@bighornimaging.com?subject=Feedback or Support Request">Feedback/Support</a> |
+    <a href="#/view_terms">Terms of Service</a> |
+    <a href="#/privacy_policy">Privacy Policy</a>
+  </p>
+
+</div>

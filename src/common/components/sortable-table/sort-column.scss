@@ -1,0 +1,23 @@
+.table th.sort-column-header {
+  padding:1px;
+  cursor:pointer;
+  }
+a.sort-link {
+  position:relative;
+  padding:7px 32px 7px 7px;
+  display:block;
+  text-decoration:none;
+  &:hover {
+    background:#f9f9f9;
+    }
+  > .sort-toggle {
+    position:absolute;
+    padding:7px 6px 5px 8px;
+    top:1px;
+    right:1px;
+    border-left:1px dotted #ddd;
+    > .glyphicon-option-horizontal {
+      color: #ccc;
+      }
+    }
+  }

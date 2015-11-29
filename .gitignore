@@ -6,3 +6,10 @@ node_modules
 
 # bower
 bower_components
+
+# Generated files
+views/index.ejs
+dist
+public/css
+public/fonts
+public/js

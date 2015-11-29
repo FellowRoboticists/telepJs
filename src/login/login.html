@@ -1,0 +1,61 @@
+
+<notifications></notifications>
+
+<form
+  name="login"
+  ng-submit="loginCtrl.login(loginCtrl.user)"
+  autocomplete="off">
+
+  <div class="row">
+    <div class="col-md-4">
+
+      <!--Email-->
+      <div
+        class="form-group"
+        ng-class="{'has-error':login.email.$invalid && login.email.$touched}">
+          <input required
+            type="text"
+            name="email"
+            ng-model="loginCtrl.user.email"
+            class="form-control"
+            placeholder="email"
+            autocomplete="off"
+            ng-pattern="loginCtrl.REGEX.EMAIL">
+        <div
+          class="messages"
+          ng-messages="login.email.$error"
+          ng-if="login.email.$touched">
+            <div class="help-block" ng-message="required">Email is required</div>
+            <div class="help-block" ng-message="pattern">Must be a valid email address</div>
+        </div>
+      </div>
+
+      <!--Password-->
+      <div
+        class="form-group"
+        ng-class="{'has-error':login.password.$invalid && login.password.$touched}">
+          <input required
+            type="password"
+            name="password"
+            ng-model="loginCtrl.user.password"
+            class="form-control"
+            placeholder="password"
+            autocomplete="off">
+        <div
+          class="messages"
+          ng-messages="login.password.$error"
+          ng-if="login.password.$touched">
+            <div class="help-block" ng-message="required">Password is required</div>
+        </div>
+      </div>
+
+      <input
+        type="submit"
+        value="Sign-in"
+        ng-disabled="login.$invalid"
+        class="btn btn-primary">
+
+    </div>
+  </div>
+
+</form>

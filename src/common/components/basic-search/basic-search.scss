@@ -1,0 +1,10 @@
+.basic-search {
+  margin-right:5px;
+  }
+.basic-search-clear {
+  cursor:pointer;
+  pointer-events:auto;
+  &:hover {
+    text-decoration:none;
+    }
+  }
